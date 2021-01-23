@@ -1,24 +1,18 @@
-let router = require("express").Router(); 
-let User = require("../db").import("../models/user"); 
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const user = require("../models/user");
+let express = require('express');
+let router = express.Router(); 
+let User = require('../db').import('../models/user');
 
-
+/*****USER REGISTER*******/
 router.post('/create', (req, res) => {
-
     User.create({
-        username: req.body.username,
-        password: req.body.password
+        username: req.body.user.username,
+        passwordhash: req.body.user.passwordhash
     })
     .then(
-        function createUser(user) {
-            res.json({
-                user:user,
-                message: 'Success!'
+        res.send('user/create endpoint')
+        );
     });
-        })
-    .catch(err=> res.status(500).json({error:err}));
-});
 
-module.exports = router;  
+/*****USER LOGIN*******/
+
+module.exports = router

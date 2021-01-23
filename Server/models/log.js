@@ -1,23 +1,20 @@
-const { DataTypes } = require("sequelize/types");
-const sequelize = require("../db");
-
 module.exports = (sequelize, DataTypes) => {
-    const Log = sequelize.define('log', {
+    const log = sequelize.define('log', {
         description: {
             type: DataTypes.STRING,
-            allowNull: false
-        },
+            allowNull: false,
+    },
         definition: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+            type:DataTypes.STRING,
+            allowNull: false,
+    },
         result: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
-        owner_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+        owner: {
+            type: DataTypes.INTEGER
         }
-    })
-}
+})
+return log;
+};
