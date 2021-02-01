@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use('/user', user);
 
-// app.use(require('./middleware/validate-session'));
+app.use(require('./middleware/header'));
 app.use('/log', log);
 
 

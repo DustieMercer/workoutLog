@@ -5,7 +5,7 @@ let log = require('../db').import('../models/log');
 
 /******POST LOG*******/
 
-router.post('/create', validateSession, (req, res) => {
+router.post('/', validateSession, (req, res) => {
     let logWorkout = {
         description: req.body.log.description,
         definition: req.body.log.definition,
@@ -17,17 +17,9 @@ router.post('/create', validateSession, (req, res) => {
         .catch(err => res.status(500).json({error:err}))
 })
 
-/*****GET All LOGS******/
-
-router.get('/', (req, res) => {
-    log.findAll()
-    .then(logs => res.status(200).json(logs))
-    .catch(err => res.status(500).json({error: err}))
-});
-
 /*****GET USER LOGS******/
 
-router.get('/mine', validateSession, (req, res) => {
+router.get('/', validateSession, (req, res) => {
     let userid = req.user.id
     log.findAll({
         where: { owner: userid } 
@@ -35,8 +27,9 @@ router.get('/mine', validateSession, (req, res) => {
     .then(logs => res.status(200).json(logs))
     .catch(err => ({error: err}))
 });
+
 /*****GET LOG BY ID******/
-router.get('/mine/:id', validateSession, (req, res) => {
+router.get('/:id', validateSession, (req, res) => {
     let userid = req.user.id
     log.findAll({
         where: { owner: userid } 
@@ -46,7 +39,7 @@ router.get('/mine/:id', validateSession, (req, res) => {
 });
 
 /*****UPDATE LOG******/
-router.put('/update/:id', validateSession, (req, res) => {
+router.put('/:id', validateSession, (req, res) => {
     const updateWorkoutLog = {
         definition: req.body.log.definition,
         description: req.body.log.description,
@@ -60,7 +53,7 @@ router.put('/update/:id', validateSession, (req, res) => {
 )});
 
 /*****DELETE LOG******/
-router.delete('/delete/:id', validateSession, (req, res) => {
+router.delete('/:id', validateSession, (req, res) => {
     const query = { where: {id: req.params.id}};
         log.findOne(query)
     .then ((results) => {
