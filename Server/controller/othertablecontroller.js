@@ -43,7 +43,7 @@ router.put('/:id', validateSession, (req, res) => {
     const updateWorkoutLog = {
         definition: req.body.log.definition,
         description: req.body.log.description,
-        results: req.body.log.results
+        result: req.body.log.result
     };
     const query = { where: { id: req.params.id}};
 

@@ -43,7 +43,8 @@ const WorkoutCreate = (props) => {
         </FormGroup>
         <FormGroup>
           <Label htmlFor="definition" />
-          <Input type="select" name="definition" value={definition} onChange={(e) => setDefinition(e.target.value)}>
+          <Input type="select" name="definition" placeholder='Choose 1' value={definition} onChange={(e) => setDefinition(e.target.value)}>
+            <option value=""></option>
             <option value="Time">Time</option>
             <option value="Weight">Weight</option>
             <option value="Distance">Distance</option>
