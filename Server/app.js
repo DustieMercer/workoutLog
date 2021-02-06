@@ -7,12 +7,12 @@ let user = require('./controller/usercontroller')
 let log = require('./controller/othertablecontroller')
 
 sequelize.sync();
-
+app.use(require('./middleware/header'));
 app.use(express.json());
 
 app.use('/user', user);
 
-app.use(require('./middleware/header'));
+
 app.use('/log', log);
 
 
